@@ -3,7 +3,7 @@
 #include <ctime>
 using namespace std;
 
-void menuAcciones(); // Declaración de funciones
+void menuAcciones(); // en esta parte decalro funciones :)
 void mostrarRecursos();
 void explorarPlaneta();
 void repararNave();
@@ -50,9 +50,9 @@ void explorarPlaneta() {
         cout << "No tienes suficiente combustible para explorar (necesitas 15 unidades)." << endl;
         return;
     }
-    combustible -= 15; // Consumo base de exploración
+    combustible -= 15; // Consumo base de exploraciÃ³n
 
-    if ((rand() % 100) < 60) { // Oxígeno (60%)
+    if ((rand() % 100) < 60) { // OxÃ­geno (60%)
         int oxigenoEncontrado = 20 + (rand() % 21); // 20 a 40
         oxigeno += oxigenoEncontrado;
         cout << "Encontraste " << oxigenoEncontrado << " unidades de oxigeno." << endl;
@@ -70,17 +70,17 @@ void explorarPlaneta() {
         cout << "Encontraste " << suministrosEncontrados << "unidades de suministros." << endl;
     }
 
-    if ((rand() % 100) < 25) { // Tormenta eléctrica (25%)
+    if ((rand() % 100) < 25) { // Tormenta elÃ©ctrica (25%)
         int dano = 10 + (rand() % 11); // 10 a 20
         integridad_nave -= dano;
-        cout << "Tormenta eléctrica: la nave perdio" << dano << "de integridad." << endl;
+        cout << "Tormenta elÃ©ctrica: la nave perdio" << dano << "de integridad." << endl;
         if (integridad_nave < 0) integridad_nave = 0;
     }
 
     if ((rand() % 100) < 25) {  // Aterrizaje forzado (25%)
         int dano = 10 + (rand() % 11); // 10 a 20
         integridad_nave -= dano;
-        cout << "Aterrizaje forzado: la nave sufrio " << dano << "de daño." << endl;
+        cout << "Aterrizaje forzado: la nave sufrio " << dano << "de daÃ±o." << endl;
         if (integridad_nave < 0) integridad_nave = 0;
     }
     days++;
@@ -89,7 +89,7 @@ void explorarPlaneta() {
 void repararNave() { // Variables globales
     cout << "\nReparando nave..." << endl;
     if (integridad_nave >= 100) {
-        cout << "La nave ya está en perfecto estado (100% de integridad)." << endl;
+        cout << "La nave ya estÃ¡ en perfecto estado (100% de integridad)." << endl;
         return;
     }
 
@@ -100,7 +100,7 @@ void repararNave() { // Variables globales
     cout << "Puedes reparar hasta " << min(maxReparable, maxPosible) << "%" << endl;
 
     int porcentaje;
-    cout << "¿Cuanto porcentaje deseas reparar?: ";
+    cout << "Â¿Cuanto porcentaje deseas reparar?: ";
     cin >> porcentaje;
 
     if (porcentaje <= 0) {
@@ -116,7 +116,7 @@ void repararNave() { // Variables globales
     }
 
     if (integridad_nave + porcentaje > 100) {
-        cout << "Ajuste automático: solo se reparará hasta el 100%." << endl;
+        cout << "Ajuste automÃ¡tico: solo se repararÃ¡ hasta el 100%." << endl;
         porcentaje = maxReparable;
         costo = porcentaje * 10;
     }
@@ -124,12 +124,12 @@ void repararNave() { // Variables globales
     suministros -= costo;
     integridad_nave += porcentaje;
     if (integridad_nave > 100) integridad_nave = 100;
-    cout << "Reparación completada. Integridad actual: " << integridad_nave << "%" << endl;
+    cout << "ReparaciÃ³n completada. Integridad actual: " << integridad_nave << "%" << endl;
     days++;
 }
 
-void enviarSenales() { // Enviar señales
-    cout << "\nEnviando señal..." << endl;
+void enviarSenales() { // Enviar seÃ±ales
+    cout << "\nEnviando seÃ±al..." << endl;
     int evento = rand() % 2; // 50/50
 
     if (evento == 0) {
@@ -160,21 +160,21 @@ void eventoNocturno() { // Evento nocturno
         if (tipo == 0) {
             oxigeno -= 10;
             if (oxigeno < 0) oxigeno = 0;
-            cout << "Tormenta cósmica: perdiste 10 unidades de oxígeno." << endl;
+            cout << "Tormenta cÃ³smica: perdiste 10 unidades de oxÃ­geno." << endl;
 
         } else if (tipo == 1) {
-            cout << "Encuentro alienígenas detectados..." << endl;
+            cout << "Encuentro alienÃ­genas detectados..." << endl;
             if (rand() % 2 == 0) {
                 combustible += 20;
                 cout << "Amistosos: recibiste 20 unidades de combustible." << endl;
             } else {
                 integridad_nave -= 10;
-                cout << "Hostiles: la nave perdió 10% de integridad." << endl;
+                cout << "Hostiles: la nave perdiÃ³ 10% de integridad." << endl;
             }
 
         } else {
             cout << "Campo de meteoritos detectado!" << endl;
-            cout << "1. Maniobrar (gasta combustible)\n2. Recibir impacto (daña la nave)" << endl;
+            cout << "1. Maniobrar (gasta combustible)\n2. Recibir impacto (daÃ±a la nave)" << endl;
             int decision;
             cin >> decision;
 
@@ -196,7 +196,7 @@ void eventoNocturno() { // Evento nocturno
 bool verificarCondiciones() { // Verificar condiciones de victoria o derrota
     if (days >= 10) {
         cout << "\n=== MISION COMPLETADA ===" << endl;
-        cout << "Has sobrevivido 10 días en el espacio. ¡Felicidades Capitan" << endl;
+        cout << "Has sobrevivido 10 dÃ­as en el espacio. Â¡Felicidades Capitan" << endl;
         mostrarRecursos();
         return false;
     }
@@ -224,7 +224,7 @@ bool verificarCondiciones() { // Verificar condiciones de victoria o derrota
     return true;
 }
 
-void menuAcciones() { // Menú de acciones
+void menuAcciones() { // MenÃº de acciones
     int op;
     bool opcionValida;
     do {
