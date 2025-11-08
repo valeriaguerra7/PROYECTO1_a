@@ -1,4 +1,4 @@
-#include <iostream> //bibliotecas que se necesitan: 
+#include <iostream> //bibliotecas que se necesitan:
 #include <cstdlib> // se usa para rand, srand y exit
 #include <ctime> // se usa para time y la funcionalidad de los números aleatorios
 using namespace std;
@@ -18,24 +18,24 @@ int integridad_nave = 100;
 int days = 0;
 
 int main() {
-    srand(time(0)); // este inicia el generador de los números aleatorios con forme al reloj
-    cout << "|| BIENVENIDO CAPITAN ||\n"; 
-    mostrarRecursos(); // enseña lo que es el estado inicial
+    srand(time(0)); // este inicia el generador de los números aleatorios conforme al reloj
+    cout << "|| BIENVENIDO CAPITAN ||\n";
+    mostrarRecursos(); // Imprime los recursos actuales en nuestra pantalla
     while (true) { // este es un bucle, se repite hasta que algo no cumpla con las condiciones (break)
         menuAcciones(); // muestra el menú y ejecuta la acción escogida
 
         if (!verificarCondiciones()) break; // si ya se perdió o se gano, se sale del bucle
 
-        eventoNocturno(); // cuando se hace de noche, sucede un evento aleatorio 
-        mostrarRecursos(); // muestra los recursos utilizados
+        eventoNocturno(); // cuando se hace de noche, sucede un evento aleatorio
+        mostrarRecursos(); // imprime los recursos actuales en nuestra pantalla
 
-        if (!verificarCondiciones()) break; // vuelve a revisar si se perdió o se ganó 
+        if (!verificarCondiciones()) break; // vuelve a revisar si se perdió o se ganó
     }
-    return 0; // finaliza el programa
+    return 0;
 }
 
-void mostrarRecursos() { // Aqui sale el estado actual de la nave
-    cout << "\n--- ESTADO ACTUAL DE LA NAVE ---" << endl; 
+void mostrarRecursos() { // Imprime los recursos actuales en nuestra pantalla
+    cout << "\n--- ESTADO ACTUAL DE LA NAVE ---" << endl;
     cout << "Combustible: " << combustible << " unidades" << endl;
     cout << "Oxigeno: " << oxigeno << " unidades" << endl;
     cout << "Suministros: " << suministros << " unidades" << endl;
@@ -43,50 +43,50 @@ void mostrarRecursos() { // Aqui sale el estado actual de la nave
     cout << "Dias: " << days << "/10" << endl;
 }
 
-void explorarPlaneta() { //Ejecuta la exploración de un planeta
+void explorarPlaneta() { //Realiza la exploración de un planeta
     cout << "\nExplorando planeta..." << endl;
 
-    if (combustible < 15) { // si no tiene suficiente combustible, no se puede realizar esta función :c
+    if (combustible < 15) { // Valida si el combustible es suficiente para la exploración
         cout << "No tienes suficiente combustible para explorar (necesitas 15 unidades)." << endl;
         return;
     }
     combustible -= 15; // gasta 15 unidades de combustible
 
-    if ((rand() % 100) < 60) { // Posibilidad de encontrar oxígeno (60%)
-        int oxigenoEncontrado = 20 + (rand() % 21); // valor entre 20 y 40
+    if ((rand() % 100) < 60) { // Genera un número entre 0 y 99 y si es menor a 60, encuentra oxigeno(60% de probabilidad)
+        int oxigenoEncontrado = 20 + (rand() % 21); // genera un número entre 20 y 40 (cantidad de oxigeno encontrado)
         oxigeno += oxigenoEncontrado;
         cout << "Encontraste " << oxigenoEncontrado << " unidades de oxigeno." << endl;
     }
 
-    if ((rand() % 100) < 25) { // Posibilidad de encontrar combustible (25%)
-        int combustibleEncontrado = 10 + (rand() % 21); // enetre 10 y 30
+    if ((rand() % 100) < 25) { // Genera un número del 0 al 99 y si es menor a 25, se encuentra combustible (25% de probabilidad)
+        int combustibleEncontrado = 10 + (rand() % 21); // genera un número entre 10 y 30 (cantidad de combustible encontrado)
         combustible += combustibleEncontrado;
         cout << "Encontraste " << combustibleEncontrado << " unidades de combustible." << endl;
     }
 
-    if ((rand() % 100) < 50) { // Posibilidad de encontrar suministros (50%)
-        int suministrosEncontrados = 30 + (rand() % 71); // entre 30 y 100
+    if ((rand() % 100) < 50) { // Genera un número entre 0 y 99 y si es menor a 50, encuentra suministros (50% de probabilidad)
+        int suministrosEncontrados = 30 + (rand() % 71); // Genera un número entre 30 y 100 (cantidad de suministros encontrados)
         suministros += suministrosEncontrados;
         cout << "Encontraste " << suministrosEncontrados << "unidades de suministros." << endl;
     }
 
-    if ((rand() % 100) < 25) { // Posibilidad de sufrir una tormenta eléctrica (25%)
+    if ((rand() % 100) < 25) { // Genera un número entre 0 y 99 y si es menor a 25 se sufre una tormenta eléctrica (25% de probabilidad)
         int dano = 10 + (rand() % 11); // entre 10 y 20
         integridad_nave -= dano;
         cout << "Tormenta eléctrica: la nave perdio" << dano << "de integridad." << endl;
         if (integridad_nave < 0) integridad_nave = 0;
     }
 
-    if ((rand() % 100) < 25) {  // Posibilidad de tener un aterrizaje forzado (25%)
+    if ((rand() % 100) < 25) {  // Genera un número entre 0 y 99 y si es menor a 25 ocurre un aterrizaje forzado (25% de probabilidad)
         int dano = 10 + (rand() % 11); // Entre 10 y 20
         integridad_nave -= dano;
         cout << "Aterrizaje forzado: la nave sufrio " << dano << "de daño." << endl;
         if (integridad_nave < 0) integridad_nave = 0;
     }
-    days++; // avanza el día
+    days++; // Incrementa 1 al valor de la variable "days"
 }
 
-void repararNave() { // Variable global para reparar la nave
+void repararNave() { // Subproceso para reparar la nave
     cout << "\nReparando nave..." << endl;
     if (integridad_nave >= 100) { // Si la integridad de la nave esta perfecta no se puede realizar
         cout << "La nave ya está en perfecto estado (100% de integridad)." << endl;
@@ -94,7 +94,7 @@ void repararNave() { // Variable global para reparar la nave
     }
 
     int maxReparable = 100 - integridad_nave; // aqui calcula que tanto se puede reparar la nave
-    int maxPosible = suministros / 10; // cada 1% cuesta 10 unidades 
+    int maxPosible = suministros / 10; // cada 1% cuesta 10 unidades
     cout << "Integridad actual: " << integridad_nave << "%" << endl;
     cout << "Suministros disponibles: " << suministros << " unidades" << endl;
     cout << "Puedes reparar hasta " << min(maxReparable, maxPosible) << "%" << endl;
@@ -103,12 +103,12 @@ void repararNave() { // Variable global para reparar la nave
     cout << "¿Cuanto porcentaje deseas reparar?: ";
     cin >> porcentaje;
 
-    if (porcentaje <= 0) {
+    if (porcentaje <= 0) { //verifica si el valor ingresado es un valor positivo
         cout << "Debes ingresar un valor positivo." << endl;
         return;
     }
 
-    int costo = porcentaje * 10; // cada % cuesta 10 unidades 
+    int costo = porcentaje * 10; // cada % cuesta 10 unidades
 
     if (costo > suministros) {
         cout << "No tienes suficientes suministros. Necesitas " << costo << " unidades." << endl;
@@ -121,11 +121,11 @@ void repararNave() { // Variable global para reparar la nave
         costo = porcentaje * 10;
     }
 
-    suministros -= costo; // disminuyen los suministros y se reparan 
+    suministros -= costo; // disminuyen los suministros y se reparan
     integridad_nave += porcentaje;
     if (integridad_nave > 100) integridad_nave = 100;
     cout << "Reparación completada. Integridad actual: " << integridad_nave << "%" << endl;
-    days++; // avanza el día 
+    days++; // avanza el día
 }
 
 void enviarSenales() { // Enviar señales
@@ -135,7 +135,7 @@ void enviarSenales() { // Enviar señales
     if (evento == 0) {
         combustible += 20; // se obtienen 20 unidades de combsutible
         cout << "Recibiste ayuda y obtuviste 20 unidades de combustible." << endl;
-    } else { // se resta un 15% de integridad y 20 unidades de suministros 
+    } else { // se resta un 15% de integridad y 20 unidades de suministros
         integridad_nave -= 15;
         suministros -= 20;
         if (suministros < 0) suministros = 0;
@@ -148,7 +148,7 @@ void eventoNocturno() { // Evento nocturno
     cout << "\nHa pasado la noche. Dia " << days << endl;
     cout << "Consumo diario: -20 oxigeno, -30 suministros." << endl;
 
-    oxigeno -= 20; // cada noche disminuye el oxígeno y suministros 
+    oxigeno -= 20; // cada noche disminuye el oxígeno y suministros
     suministros -= 30;
     if (oxigeno < 0) oxigeno = 0;
     if (suministros < 0) suministros = 0;
@@ -157,7 +157,7 @@ void eventoNocturno() { // Evento nocturno
         cout << "\n--- EVENTO NOCTURNO ---" << endl;
         int tipo = rand() % 3;
 
-        if (tipo == 0) { // tormenta cósmica disminuye el oxígeno 
+        if (tipo == 0) { // tormenta cósmica disminuye el oxígeno
             oxigeno -= 10;
             if (oxigeno < 0) oxigeno = 0;
             cout << "Tormenta cósmica: perdiste 10 unidades de oxígeno." << endl;
@@ -225,8 +225,8 @@ bool verificarCondiciones() { // Verificar condiciones de la partida (si ganas o
 }
 
 void menuAcciones() { // Menú de acciones
-    int op; // la opción que escoge le jugador 
-    bool opcionValida; // repite si escoge alguna opción invalida 
+    int op; // la opción que escoge le jugador
+    bool opcionValida; // repite si escoge alguna opción invalida
     do {
         cout << "\n--- MENU DE ACCIONES ---" << endl;
         cout << "1. Explorar planeta" << endl;
@@ -242,11 +242,11 @@ void menuAcciones() { // Menú de acciones
             case 3: enviarSenales(); break;
             case 4:
                 cout << "\nTe has rendido. GAME OVER." << endl;
-                exit(0); //Termina el programa 
+                exit(0); //Termina el programa
             default:
                 cout << "Op no valida. Intenta de nuevo." << endl;
                 opcionValida = false;
                 break;
         }
-    } while (!opcionValida); // se repite hasta que se escoja una opción valida 
+    } while (!'opcionValida); // se repite hasta que se escoja una opción valida
 }
