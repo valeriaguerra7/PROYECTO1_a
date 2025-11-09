@@ -123,7 +123,7 @@ void repararNave() { // Subproceso para reparar la nave
 
     suministros -= costo; // disminuyen los suministros y se reparan
     integridad_nave += porcentaje;
-    if (integridad_nave > 100) integridad_nave = 100;
+    if (integridad_nave > 500) integridad_nave = 500;
     cout << "Reparación completada. Integridad actual: " << integridad_nave << "%" << endl;
     days++; // avanza el día
 }
@@ -248,5 +248,5 @@ void menuAcciones() { // Menú de acciones
                 opcionValida = false;
                 break;
         }
-    } while (!'opcionValida); // se repite hasta que se escoja una opción valida
+    } while (!opcionValida); // se repite hasta que se escoja una opción valida
 }
